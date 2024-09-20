@@ -2,7 +2,7 @@
 - [x] Q1
 - [x] Q2
 - [x] Q3
-- [ ] Q4
+- [x] Q4
 - [ ] Q5
 
 ## Q1
@@ -81,3 +81,14 @@ c. What is the number of blocks in the grid?
 d. What is the number of threads that execute the code on line 05?
 
 300*150 = 45000
+
+## Q4
+Consider a 2D matrix with a width of 400 and a height of 500. The matrix is stored as a one-dimensional array. Specify the array index of the matrix element at row 20 and column 10: 
+
+a. If the matrix is stored in row-major order. 
+
+20*400 + 10 = 8010
+
+b. If the matrix is stored in column-major order.
+
+10*500 + 20 = 5020
