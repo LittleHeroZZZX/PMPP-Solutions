@@ -1,3 +1,5 @@
+#define BLOCK_SIZE 32
+
 __global__ void matmul_row_kernel(float *M, float *N, float *P, int width){
     /*
      * each thread compute one row of P
@@ -6,14 +8,12 @@ __global__ void matmul_row_kernel(float *M, float *N, float *P, int width){
      */
     int row = threadIdx.x + blockIdx.x * blockDim.x;
     if(row < width){
-        int row_offset = row * width;
-        for(int j=0; j<width; j++){
-            P[row_offset+j] = 0;
-        }
-        for(int i=0; i<width; i++){ // i iterates M's columns
-            for(int j=0; j<width; j++) { // j iterates over P's columns / N's columns
-                P[row_offset+j] += M[row_offset+i] * N[i*width+j];
+        for(int j=0; j<width; j++){ // j iterates over N's columns
+            float sum = 0;
+            for(int i=0; i<width; i++){ // i iterates over P's columns / M's columns
+                sum += M[row*width+i] * N[i*width+j];
             }
+            P[row*width+j] = sum;
         }
     }
 }
@@ -26,13 +26,12 @@ __global__ void matmul_column_kernel(float *M, float *N, float *P, int width){
      */
     int col = threadIdx.x + blockIdx.x * blockDim.x;
     if(col < width){
-        for(int i=0; i<width; i++){
-            P[i*width+col] = 0;
-        }
         for(int j=0; j<width; j++){ // j iterates over M's rows
+            float sum = 0;
             for(int i=0; i<width; i++){ // i iterates over P's rows / N's rows
-                P[j*width+col] += M[j*width+i] * N[i*width+col];
+                sum += M[j*width+i] * N[i*width+col];
             }
+            P[j*width+col] = sum;
         }
     }
 }
@@ -48,7 +47,7 @@ extern "C" void matmul_row(float *M, float *N, float *P, int width){
     cudaMemcpy(d_M, M, size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_N, N, size, cudaMemcpyHostToDevice);
 
-    matmul_row_kernel<<<width, width>>>(d_M, d_N, d_P, width);
+    matmul_row_kernel<<<(width+BLOCK_SIZE-1)/BLOCK_SIZE, BLOCK_SIZE>>>(d_M, d_N, d_P, width);
 
     cudaMemcpy(P, d_P, size, cudaMemcpyDeviceToHost);
 
@@ -68,7 +67,7 @@ extern "C" void matmul_column(float *M, float *N, float *P, int width){
     cudaMemcpy(d_M, M, size, cudaMemcpyHostToDevice);
     cudaMemcpy(d_N, N, size, cudaMemcpyHostToDevice);
 
-    matmul_column_kernel<<<width, width>>>(d_M, d_N, d_P, width);
+    matmul_column_kernel<<<(width+BLOCK_SIZE-1)/BLOCK_SIZE, BLOCK_SIZE>>>(d_M, d_N, d_P, width);
 
     cudaMemcpy(P, d_P, size, cudaMemcpyDeviceToHost);
 
