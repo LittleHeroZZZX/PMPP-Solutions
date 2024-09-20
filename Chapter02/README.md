@@ -1,7 +1,7 @@
 ## CheckList
 - [x] Q1
 - [x] Q2
-- [ ] Q3
+- [x] Q3
 - [ ] Q4
 - [ ] Q5
 
@@ -44,3 +44,40 @@ Unsurprisingly, np.matmul is about 5x faster than my implementations.
 
 ## Q2
 A matrix-vector multiplication takes an input matrix B and a vector C and produces one output vector A. Each element of the output vector A is the dot  product of one row of the input matrix B and C, that is, $A[i] = \sum^j B[i][j] \cdot C[j]$. For simplicity we will handle only square matrices whose elements are singleprecision floating-point numbers. Write a matrix-vector multiplication kernel and the host stub function that can be called with four parameters: pointer to the output matrix, pointer to the input matrix, pointer to the input vector, and the number of elements in each dimension. Use one thread to calculate an output vector element.
+
+## Q3
+Consider the following CUDA kernel and the corresponding host function that calls it:
+```c
+__global__ void foo_kernel(float* a, float* b, unsigned int M, unsigned int N) {
+    unsigned int row = blockIdx.y * blockDim.y + threadIdx.y;
+    unsigned int col = blockIdx.x * blockDim.x + threadIdx.x;
+    if (row < M && col < N) {
+        b[row * N + col] = a[row * N + col] / 2.1f + 4.8f;
+    }
+}
+
+void foo(float* a_d, float* b_d) {
+    unsigned int M = 150;
+    unsigned int N = 300;
+    dim3 bd(16, 32);
+    dim3 gd((N - 1) / 16 + 1, (M - 1) / 32 + 1);
+    foo_kernel<<<gd, bd>>>(a_d, b_d, M, N);
+}
+```
+a. What is the number of threads per block? 
+
+16*32 = 512
+
+b. What is the number of threads in the grid
+
+(300-1)/16 + 1 = 19
+(150-1)/32 + 1 = 5
+19*5*512 = 48640
+
+c. What is the number of blocks in the grid? 
+
+19*5 = 95
+
+d. What is the number of threads that execute the code on line 05?
+
+300*150 = 45000
