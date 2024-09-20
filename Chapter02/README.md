@@ -3,7 +3,7 @@
 - [x] Q2
 - [x] Q3
 - [x] Q4
-- [ ] Q5
+- [x] Q5
 
 ## Q1
 In this chapter we implemented a matrix multiplication kernel that has each thread produce one output matrix element. In this question, you will implement different matrix-matrix multiplication kernels and compare them. 
@@ -92,3 +92,8 @@ a. If the matrix is stored in row-major order.
 b. If the matrix is stored in column-major order.
 
 10*500 + 20 = 5020
+
+## Q5
+Consider a 3D tensor with a width of 400, a height of 500, and a depth of 300. The tensor is stored as a one-dimensional array in row-major order. Specify the array index of the tensor element at x = 10, y = 20, and = 5.
+
+10*500*300 + 20*300 + 5 = 1505005
