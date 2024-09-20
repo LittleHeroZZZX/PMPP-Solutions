@@ -6,7 +6,7 @@ cnt = 10
 width = 4096
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-cuda_lib = ctypes.CDLL(os.path.join(current_dir, "libch02_q2_mat_vec_matmul.so"))
+cuda_lib = ctypes.CDLL(os.path.join(current_dir, "libch03_q2_mat_vec_matmul.so"))
 
 cuda_lib.mat_vec_matmul.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.float32),

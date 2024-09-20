@@ -3,7 +3,7 @@ import ctypes
 import os
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
-cuda_lib = ctypes.CDLL(os.path.join(current_dir, "libch02_q1_matmul.so"))
+cuda_lib = ctypes.CDLL(os.path.join(current_dir, "libch03_q1_matmul.so"))
 
 cuda_lib.matmul_row.argtypes = [
     np.ctypeslib.ndpointer(dtype=np.float32),

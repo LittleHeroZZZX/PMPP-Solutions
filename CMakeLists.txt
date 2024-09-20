@@ -9,4 +9,4 @@ if(CUDA_DEBUG_INFO)
     set(CMAKE_CUDA_FLAGS "${CMAKE_CUDA_FLAGS} -G -g")
 endif()
 
-add_subdirectory(Chapter02)
+add_subdirectory(Chapter03)
