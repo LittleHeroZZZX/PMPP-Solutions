@@ -74,7 +74,7 @@ b. What is the number of threads in the grid
 (150-1)/32 + 1 = 5
 19*5*512 = 48640
 
-c. What is the number of blocks in the grid? 
+c. What is the number of blocks in the grid?  
 
 19*5 = 95
 

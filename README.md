@@ -5,9 +5,9 @@ As a beginner, I aim to explore and learn parallel programming concepts.
 Please note that these solutions are not guaranteed to be correct.
 
 ## Progress
-- [ ] Chapter 1: Introduction
-- [ ] Chapter 2: Heterogeneous data parallel computing
-- [x] Chapter 3: Multidimensional grids and data
+- [x] Chapter 1: Introduction (No exercises)
+- [x] Chapter 2: [Heterogeneous data parallel computing](Chapter02/README.md)
+- [x] Chapter 3: [Multidimensional grids and data](Chapter03/README.md)
 - [ ] Chapter 4: Compute architecture and scheduling
 - [ ] Chapter 5: Memory architecture and data locality
 - [ ] Chapter 6: Performance considerations
