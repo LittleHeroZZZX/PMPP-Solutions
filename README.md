@@ -13,7 +13,7 @@ If you find any mistakes, feel free to open an issue or a pull request.
 - [x] Chapter 2: [Heterogeneous data parallel computing](Chapter02/README.md)
 - [x] Chapter 3: [Multidimensional grids and data](Chapter03/README.md)
 - [x] Chapter 4: [Compute architecture and scheduling](Chapter04/README.md)
-- [ ] Chapter 5: Memory architecture and data locality
+- [x] Chapter 5: [Memory architecture and data locality](Chapter05/README.md)
 - [ ] Chapter 6: Performance considerations
 - [ ] Chapter 7: Convolution
 - [ ] Chapter 8: Stencil
