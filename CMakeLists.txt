@@ -10,3 +10,4 @@ if(CUDA_DEBUG_INFO)
 endif()
 
 add_subdirectory(Chapter03)
+add_subdirectory(Chapter06)
