@@ -1,5 +1,3 @@
-from turtledemo.forest import start
-
 import numpy as np
 import torch
 import ctypes

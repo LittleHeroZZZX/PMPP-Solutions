@@ -11,3 +11,4 @@ endif()
 
 add_subdirectory(Chapter03)
 add_subdirectory(Chapter06)
+add_subdirectory(Chapter07)
