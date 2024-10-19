@@ -16,7 +16,7 @@ If you find any mistakes, feel free to open an issue or a pull request.
 - [x] Chapter 5: [Memory architecture and data locality](Chapter05/README.md)
 - [x] Chapter 6: [Performance considerations](Chapter06/README.md)
 - [x] Chapter 7: [Convolution](Chapter07/README.md)
-- [ ] Chapter 8: Stencil
+- [ ] Chapter 8: [Stencil](Chapter08/README.md)
 - [ ] Chapter 9: Parallel histogram
 - [ ] Chapter 10: Reduction
 - [ ] Chapter 11: Prefix sum (scan)
